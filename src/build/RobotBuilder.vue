@@ -2,10 +2,11 @@
    <div class="content">
      <button class="add-to-cart" @click="addToCart">Add to Cart</button>
     <div class="top-row">
-      <div class="robot-name">
+      <!-- <div class="robot-name">
         {{selectedRobot.head.title}}     
-      </div>
-      <div class="top part">
+      </div> -->
+      <PartSelector :parts="availableParts.heads"></PartSelector>
+      <!-- <div class="top part">
         <img :src="selectedRobot.head.src" title="head"/>
         <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
         <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>        
@@ -13,30 +14,34 @@
               @click="rightSide = rightSide + 2; console.log(rightSide);" 
               v-show="selectedRobot.head.onSale">Sale!</span> 
         <span v-pin1:position.bottom.right class="sale">{{selectedRobot.head.cost | currency('$')}}</span>
-      </div>
+      </div> -->
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="selectedRobot.leftArm.src" title="left arm"/>
+        <PartSelector :parts="availableParts.arms"></PartSelector>
+        <!-- <img v-bind:src="selectedRobot.leftArm.src" title="left arm"/>
         <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button>
+        <button class="next-selector">&#9660;</button> -->
       </div>
       <div class="center part">
-        <img v-bind:src="selectedRobot.torso.src" title="left arm"/>
+        <PartSelector :parts="availableParts.torsos"></PartSelector>
+        <!-- <img v-bind:src="selectedRobot.torso.src" title="left arm"/>
         <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button>
+        <button class="next-selector">&#9658;</button> -->
       </div>
       <div class="right part">
-        <img v-bind:src="selectedRobot.rightArm.src" title="left arm"/>
+        <PartSelector :parts="availableParts.arms"></PartSelector>
+        <!-- <img v-bind:src="selectedRobot.rightArm.src" title="left arm"/>
         <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button>
+        <button class="next-selector">&#9660;</button> -->
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
-        <img v-bind:src="selectedRobot.base.src" title="left arm"/>
+        <PartSelector :parts="availableParts.bases"></PartSelector>
+        <!-- <img v-bind:src="selectedRobot.base.src" title="left arm"/>
         <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button>
+        <button class="next-selector">&#9658;</button> -->
       </div>
     </div>
   </div>
@@ -45,58 +50,66 @@
 <script>
 import availableParts from '../data/parts';
 import pin1Directive from '../shared/pin1-directive.js';
+import PartSelector from './PartSelector.vue';
 
-function getNextValidIndex(index, length) {
-  const nextIndex = index + 1;
-  return nextIndex > length - 1 ? 0 : nextIndex;
-}
+// function getNextValidIndex(index, length) {
+//   const nextIndex = index + 1;
+//   return nextIndex > length - 1 ? 0 : nextIndex;
+// }
 
-function getPrevValidIndex(index, length) {
-  const prevIndex = index - 1;
-  return prevIndex < 0 ? length - 1 : prevIndex;
-}
+// function getPrevValidIndex(index, length) {
+//   const prevIndex = index - 1;
+//   return prevIndex < 0 ? length - 1 : prevIndex;
+// }
 
 export default {
   name: 'RobotBuilder',
+  components: {
+    PartSelector,
+  },
+
+  // props: {
+  //   part
+  // },
    
   data() {
     return {
       availableParts,
-      selectedHeadIndex: 0,
-      selectedRightArmIndex: 0,
-      selectedLeftArmIndex: 0,
-      selectedTorsoIndex: 0,
-      selectedBaseIndex: 0,
-      rightSide: 5,
+      cart: [],
+      selectedRobot: {
+        head: {},
+        leftArm: {},
+        rightArm: {},
+        torso: {},
+        base: {},
+      },
+      // selectedHeadIndex: 0,
+      // selectedRightArmIndex: 0,
+      // selectedLeftArmIndex: 0,
+      // selectedTorsoIndex: 0,
+      // selectedBaseIndex: 0,
+      // rightSide: 5,
     }
   },
 
   computed: {
-    selectedRobot() {
-      return {
-        head: availableParts.heads[this.selectedHeadIndex],
-        leftArm: availableParts.arms[this.selectedLeftArmIndex],
-        rightArm: availableParts.arms[this.selectedRightArmIndex],
-        torso: availableParts.torsos[this.selectedTorsoIndex],
-        base: availableParts.torsos[this.selectedTorsoIndex],
-      };
-    },
+    
   },
 
   methods: {
-    selectPreviousHead() {
-      this.selectedHeadIndex = getPrevValidIndex(this.selectedHeadIndex, availableParts.heads.length);
-    },
-    selectNextHead() {
-      this.selectedHeadIndex = getNextValidIndex(this.selectedHeadIndex, availableParts.heads.length);
-    },
+    // selectPreviousHead() {
+    //   this.selectedHeadIndex = getPrevValidIndex(this.selectedHeadIndex, availableParts.heads.length);
+    // },
+    // selectNextHead() {
+    //   this.selectedHeadIndex = getNextValidIndex(this.selectedHeadIndex, availableParts.heads.length);
+    // },
     addToCart() {
 
     },
   },
-    directives: {
-      pin1: pin1Directive,
-    },
+  // directives: {
+  //   pin1: pin1Directive,
+  // },
 };
 </script>
 
