@@ -70,7 +70,7 @@ ul {
 }
 .nav-item {
   display: inline-block;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
   font-size: 22px;
   border-right: 1px solid #bbb;
 }
@@ -79,8 +79,11 @@ ul {
   height: 30px;
 }
 .nav-link {
+  padding: 5px 10px;
   text-decoration: none;
   color: inherit;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .router-link-active {
   background-color: aquamarine;

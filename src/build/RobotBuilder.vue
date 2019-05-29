@@ -1,69 +1,38 @@
 <template>
-   <div class="content">
-     <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+   <div v-if="availableParts" class="content">
+    <button class="add-to-cart" @click="addToCart">Add to Cart</button>
     <div class="top-row">
-      <!-- <div class="robot-name">
-        {{selectedRobot.head.title}}     
-      </div> -->
       <PartSelector :parts="availableParts.heads"></PartSelector>
-      <!-- <div class="top part">
-        <img :src="selectedRobot.head.src" title="head"/>
-        <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
-        <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>        
-        <span v-pin2="{top: '5px', right: rightSide+'px', backgroundColor: 'red', position: 'absolute', color: 'blue'}"
-              @click="rightSide = rightSide + 2; console.log(rightSide);" 
-              v-show="selectedRobot.head.onSale">Sale!</span> 
-        <span v-pin1:position.bottom.right class="sale">{{selectedRobot.head.cost | currency('$')}}</span>
-      </div> -->
     </div>
     <div class="middle-row">
       <div class="left part">
         <PartSelector :parts="availableParts.arms"></PartSelector>
-        <!-- <img v-bind:src="selectedRobot.leftArm.src" title="left arm"/>
-        <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button> -->
       </div>
       <div class="center part">
         <PartSelector :parts="availableParts.torsos"></PartSelector>
-        <!-- <img v-bind:src="selectedRobot.torso.src" title="left arm"/>
-        <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button> -->
       </div>
       <div class="right part">
         <PartSelector :parts="availableParts.arms"></PartSelector>
-        <!-- <img v-bind:src="selectedRobot.rightArm.src" title="left arm"/>
-        <button class="prev-selector">&#9650;</button>
-        <button class="next-selector">&#9660;</button> -->
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
         <PartSelector :parts="availableParts.bases"></PartSelector>
-        <!-- <img v-bind:src="selectedRobot.base.src" title="left arm"/>
-        <button class="prev-selector">&#9668;</button>
-        <button class="next-selector">&#9658;</button> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import availableParts from '../data/parts';
+//import availableParts from '../data/parts';
 import pin1Directive from '../shared/pin1-directive.js';
 import PartSelector from './PartSelector.vue';
 
-// function getNextValidIndex(index, length) {
-//   const nextIndex = index + 1;
-//   return nextIndex > length - 1 ? 0 : nextIndex;
-// }
-
-// function getPrevValidIndex(index, length) {
-//   const prevIndex = index - 1;
-//   return prevIndex < 0 ? length - 1 : prevIndex;
-// }
-
 export default {
   name: 'RobotBuilder',
+  created() {
+    this.$store.dispatch('getParts');
+  },
   components: {
     PartSelector,
   },
@@ -74,7 +43,7 @@ export default {
    
   data() {
     return {
-      availableParts,
+      //availableParts,
       cart: [],
       selectedRobot: {
         head: {},
@@ -83,26 +52,16 @@ export default {
         torso: {},
         base: {},
       },
-      // selectedHeadIndex: 0,
-      // selectedRightArmIndex: 0,
-      // selectedLeftArmIndex: 0,
-      // selectedTorsoIndex: 0,
-      // selectedBaseIndex: 0,
-      // rightSide: 5,
     }
   },
 
-  computed: {
-    
+  computed: {    
+    availableParts() {
+      return this.$store.state.parts;
+    }
   },
 
   methods: {
-    // selectPreviousHead() {
-    //   this.selectedHeadIndex = getPrevValidIndex(this.selectedHeadIndex, availableParts.heads.length);
-    // },
-    // selectNextHead() {
-    //   this.selectedHeadIndex = getNextValidIndex(this.selectedHeadIndex, availableParts.heads.length);
-    // },
     addToCart() {
 
     },
