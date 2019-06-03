@@ -12,11 +12,12 @@
 
 
 <script>
-import parts from '../data/parts';
+//import parts from '../data/parts';
 
 export default {
   name: 'RobotBases',
   data() {
+    var parts = this.$store.state.parts;
     return { bases: parts.bases };
   },
 };

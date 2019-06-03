@@ -9,7 +9,7 @@
 
 
 <script>
-import parts from '../data/parts';
+//import parts from '../data/parts';
 
 export default {
   name: 'PartInfo',
@@ -37,6 +37,7 @@ export default {
       // const partType = this.partType;
       // const id = this.id;
 
+      var parts = this.$store.state.parts;
       return parts[partType].find(p => p.id === +id);
     },
   },
