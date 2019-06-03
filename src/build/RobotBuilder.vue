@@ -24,7 +24,7 @@
 </template>
 
 <script>
-//import availableParts from '../data/parts';
+// import availableParts from '../data/parts';
 import pin1Directive from '../shared/pin1-directive.js';
 import PartSelector from './PartSelector.vue';
 
@@ -40,10 +40,10 @@ export default {
   // props: {
   //   part
   // },
-   
+
   data() {
     return {
-      //availableParts,
+      // availableParts,
       cart: [],
       selectedRobot: {
         head: {},
@@ -52,13 +52,13 @@ export default {
         torso: {},
         base: {},
       },
-    }
+    };
   },
 
-  computed: {    
+  computed: {
     availableParts() {
       return this.$store.state.parts;
-    }
+    },
   },
 
   methods: {
@@ -79,7 +79,7 @@ export default {
   width:165px;
   height:165px;
   border: 3px solid #aaa;
-} 
+}
 .part img {
   width:165px;
 }
@@ -142,20 +142,20 @@ export default {
 .left .next-selector {
   top: auto;
   bottom: -28px;
-  left: -3px;    
+  left: -3px;
   width: 144px;
   height: 25px;
 }
 .right .prev-selector {
   top: -28px;
-  left: 24px;  
+  left: 24px;
   width: 144px;
   height: 25px;
 }
 .right .next-selector {
   top: auto;
   bottom: -28px;
-  left: 24px;    
+  left: 24px;
   width: 144px;
   height: 25px;
 }
@@ -169,7 +169,7 @@ export default {
   width: 100%;
 }
 .sale {
-  
+
   padding: 3px;
 }
 .content {
@@ -183,4 +183,3 @@ export default {
   font-size: 16px;
 }
 </style>
-

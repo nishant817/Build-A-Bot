@@ -15,8 +15,8 @@
 
 <script>
 export default {
-   name: 'BrowseParts',
-}
+  name: 'BrowseParts',
+};
 </script>
 
 
@@ -37,5 +37,3 @@ a {
    color: palevioletred;
 }
 </style>
-
-

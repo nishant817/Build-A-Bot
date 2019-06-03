@@ -8,12 +8,13 @@
       <router-link to="/build">Get Started</router-link>
       Building your first Robot!
     </div>
-    
+
   </div>
 </template>
 
 <script>
 import RobotBuilder from '../build/RobotBuilder.vue';
+
 export default {
   name: 'HomePage',
   props: {
